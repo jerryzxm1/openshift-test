@@ -41,4 +41,5 @@ RUN mkdir $APP_HOME -p; \
     mkdir $APP_HOME/logs -p
 WORKDIR $APP_HOME
 COPY target/app*.jar ./app.jar
+EXPOSE 8080/tcp
 CMD $JAVA_HOME/bin/java -jar app.jar
