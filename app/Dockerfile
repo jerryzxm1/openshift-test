@@ -4,4 +4,5 @@ RUN mkdir $APP_HOME -p; \
     mkdir $APP_HOME/logs -p
 WORKDIR $APP_HOME
 COPY target/app*.jar ./app.jar
+USER default
 CMD java -jar app.jar
