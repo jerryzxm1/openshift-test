@@ -1,5 +1,6 @@
 # ref: https://github.com/docker-library/openjdk/blob/07af3ffded3216b44d69b4f14309fc5a2967e623/12/jdk/oracle/Dockerfile
 FROM openshift/base-centos7
+
 ENV LANG C.UTF-8
 ENV JAVA_HOME /usr/java/openjdk-11
 ENV PATH $JAVA_HOME/bin:$PATH
@@ -36,10 +37,14 @@ RUN set -eux; \
 # https://docs.oracle.com/javase/10/jshell/
 # https://en.wikipedia.org/wiki/JShell
 
+
+
 ARG APP_HOME=/www/app
 RUN mkdir $APP_HOME -p; \
     mkdir $APP_HOME/logs -p
 WORKDIR $APP_HOME
 COPY target/app*.jar ./app.jar
 EXPOSE 8080/tcp
+RUN chmod og+rwx $JAVA_HOME/bin/java $JAVA_HOME/bin/javac ./app.jar
+USER default
 CMD $JAVA_HOME/bin/java -jar app.jar
