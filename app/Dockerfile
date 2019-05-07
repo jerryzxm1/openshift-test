@@ -5,4 +5,5 @@ RUN mkdir $APP_HOME -p; \
 WORKDIR $APP_HOME
 COPY target/app*.jar ./app.jar
 USER default
+EXPOSE 8080/tcp
 CMD java -jar app.jar
