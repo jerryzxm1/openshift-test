@@ -23,7 +23,7 @@ public class CharacterController {
     private CharacterService characterService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity add(@RequestBody @Valid ComicCharacter character) throws URISyntaxException {
+    public ResponseEntity add(@RequestBody @Valid ComicCharacter character) {
         this.characterService.add(character);
         if(character.getId() != null)
             return ResponseEntity.ok(character);
@@ -32,7 +32,7 @@ public class CharacterController {
     }
 
     @PostMapping(path = "/batch", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity addBatch(@RequestBody @Valid @Size(min = 1) List<ComicCharacter> characters) throws URISyntaxException {
+    public ResponseEntity addBatch(@RequestBody @Valid @Size(min = 1) List<ComicCharacter> characters) {
         for (ComicCharacter user : characters) {
             this.characterService.add(user);
         }
